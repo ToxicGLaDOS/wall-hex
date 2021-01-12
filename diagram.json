@@ -1,0 +1,315 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "id": "uno",
+      "type": "wokwi-arduino-uno",
+      "top": 80,
+      "left": 20
+    },
+    {
+      "id": "neopixel",
+      "type": "wokwi-neopixel-matrix",
+      "top": 0,
+      "left": 0,
+      "rotate": -180,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel1",
+      "type": "wokwi-neopixel-matrix",
+      "top": -40,
+      "left": -70,
+      "rotate": -120,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel2",
+      "type": "wokwi-neopixel-matrix",
+      "top": -110,
+      "left": -70,
+      "rotate": -60,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel3",
+      "type": "wokwi-neopixel-matrix",
+      "top": -150,
+      "left": 0,
+      "rotate": 0,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel4",
+      "type": "wokwi-neopixel-matrix",
+      "top": -110,
+      "left": 60,
+      "rotate": 60,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel5",
+      "type": "wokwi-neopixel-matrix",
+      "top": -130,
+      "left": 80,
+      "rotate": 240,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel6",
+      "type": "wokwi-neopixel-matrix",
+      "top": -200,
+      "left": 80,
+      "rotate": 300,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel7",
+      "type": "wokwi-neopixel-matrix",
+      "top": -220,
+      "left": 60,
+      "rotate": 120,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel8",
+      "type": "wokwi-neopixel-matrix",
+      "top": -180,
+      "left": 0,
+      "rotate": 180,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel9",
+      "type": "wokwi-neopixel-matrix",
+      "top": -230,
+      "left": -70,
+      "rotate": 240,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel10",
+      "type": "wokwi-neopixel-matrix",
+      "top": -300,
+      "left": -70,
+      "rotate": 300,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel11",
+      "type": "wokwi-neopixel-matrix",
+      "top": -340,
+      "left": 0,
+      "rotate": 0,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel12",
+      "type": "wokwi-neopixel-matrix",
+      "top": -300,
+      "left": 60,
+      "rotate": 60,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel13",
+      "type": "wokwi-neopixel-matrix",
+      "top": -240,
+      "left": 140,
+      "rotate": 0,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel14",
+      "type": "wokwi-neopixel-matrix",
+      "top": -270,
+      "left": 140,
+      "rotate": 180,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel15",
+      "type": "wokwi-neopixel-matrix",
+      "top": -320,
+      "left": 80,
+      "rotate": 240,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel16",
+      "type": "wokwi-neopixel-matrix",
+      "top": -390,
+      "left": 80,
+      "rotate": 300,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel17",
+      "type": "wokwi-neopixel-matrix",
+      "top": -430,
+      "left": 140,
+      "rotate": 0,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel18",
+      "type": "wokwi-neopixel-matrix",
+      "top": -390,
+      "left": 200,
+      "rotate": 60,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel19",
+      "type": "wokwi-neopixel-matrix",
+      "top": -320,
+      "left": 200,
+      "rotate": 120,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel20",
+      "type": "wokwi-neopixel-matrix",
+      "top": -200,
+      "left": 200,
+      "rotate": 60,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel21",
+      "type": "wokwi-neopixel-matrix",
+      "top": -130,
+      "left": 200,
+      "rotate": 120,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel22",
+      "type": "wokwi-neopixel-matrix",
+      "top": -90,
+      "left": 140,
+      "rotate": 180,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "neopixel23",
+      "type": "wokwi-neopixel-matrix",
+      "top": -40,
+      "left": 60,
+      "rotate": 120,
+      "attrs": {
+        "rows": 1,
+        "cols": 3
+      }
+    },
+    {
+      "id": "button",
+      "type": "wokwi-pushbutton",
+      "attrs": { "color": "red" },
+      "top": 10,
+      "left": 100
+    }
+  ],
+  "connections": [
+    ["uno:GND.1", "neopixel:VSS", "black", ["v-14", "*", "h2"]],
+    ["uno:3", "neopixel:DIN", "green", ["v-16", "*", "h6"]],
+    ["uno:5V", "neopixel:VDD", "red", ["v20", "h-95", "*", "v0", "h-5"]],
+    ["neopixel:DOUT",    "neopixel1:DIN",  "green"],
+    ["neopixel1:DOUT",   "neopixel2:DIN",  "green"],
+    ["neopixel2:DOUT",   "neopixel3:DIN",  "green"],
+    ["neopixel3:DOUT",   "neopixel4:DIN",  "green"],
+    ["neopixel4:DOUT",   "neopixel5:DIN",  "green"],
+    ["neopixel5:DOUT",   "neopixel6:DIN",  "green"],
+    ["neopixel6:DOUT",   "neopixel7:DIN",  "green"],
+    ["neopixel7:DOUT",   "neopixel8:DIN",  "green"],
+    ["neopixel8:DOUT",   "neopixel9:DIN",  "green"],
+    ["neopixel9:DOUT",   "neopixel10:DIN", "green"],
+    ["neopixel10:DOUT",  "neopixel11:DIN", "green"],
+    ["neopixel11:DOUT",  "neopixel12:DIN", "green"],
+    ["neopixel12:DOUT",  "neopixel13:DIN", "green"],
+    ["neopixel13:DOUT",  "neopixel14:DIN", "green"],
+    ["neopixel14:DOUT",  "neopixel15:DIN", "green"],
+    ["neopixel15:DOUT",  "neopixel16:DIN", "green"],
+    ["neopixel16:DOUT",  "neopixel17:DIN", "green"],
+    ["neopixel17:DOUT",  "neopixel18:DIN", "green"],
+    ["neopixel18:DOUT",  "neopixel19:DIN", "green"],
+    ["neopixel19:DOUT",  "neopixel20:DIN", "green"],
+    ["neopixel20:DOUT",  "neopixel21:DIN", "green"],
+    ["neopixel21:DOUT",  "neopixel22:DIN", "green"],
+    ["neopixel22:DOUT",  "neopixel23:DIN", "green"],
+    ["uno:4", "button:2.r", "blue"],
+    ["uno:5V", "button:1.l", "red"]
+  ]
+}
+
