@@ -17,10 +17,10 @@ uint8_t hex2indices[] = {21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
 uint8_t hex3indices[] = {42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59};
 
 Hex hexes[NUM_HEXES] = {
-  Hex(hex0indices),
-  Hex(hex1indices),
-  Hex(hex2indices),
-  Hex(hex3indices)
+  Hex(hex0indices, sizeof(hex0indices)/sizeof(hex0indices[0])),
+  Hex(hex1indices, sizeof(hex1indices)/sizeof(hex1indices[0])),
+  Hex(hex2indices, sizeof(hex2indices)/sizeof(hex2indices[0])),
+  Hex(hex3indices, sizeof(hex3indices)/sizeof(hex3indices[0]))
 };
 
 Button button;
@@ -34,6 +34,7 @@ OperationMode operationMode = NORMAL;
 unsigned long timeoutTimer = 0;
 unsigned long previousTimeoutTime = 0;
 const unsigned long timeoutDuration = 3000;
+unsigned long previousTime = 0; // Used to keep track of deltas to pass to updateLights
 
 
 void setup() {
@@ -44,10 +45,13 @@ void setup() {
 }
 
 void loop() {
+  // Calculate delta and previous time now because updateLights might take a while
+  // and we want these two to be as close as possible for the most accurate delta
+  unsigned long delta = millis() - previousTime; 
+  previousTime = millis();
   for (int i = 0; i < NUM_HEXES; i++){
     Hex *hex = &hexes[i];
-
-    hex->updateLights();
+    hex->updateLights(delta);
     CRGB* ledData = hex->getLedData();
     uint8_t* indices = hex->getIndices();
     uint8_t numLeds = hex->getNumLeds();
@@ -95,7 +99,7 @@ void handleButton() {
   }
   else if(operationMode == SELECTING_PATTERN){
     if (event == Event::PRESS){
-      Serial.println("New pattern");
+      //Serial.println("New pattern");
       hexes[selectedHex].changeMode();
       timeoutTimer = 0;
     }
