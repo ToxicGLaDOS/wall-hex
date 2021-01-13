@@ -309,7 +309,7 @@
     ["neopixel21:DOUT",  "neopixel22:DIN", "green"],
     ["neopixel22:DOUT",  "neopixel23:DIN", "green"],
     ["uno:4", "button:2.r", "blue"],
-    ["uno:5V", "button:1.l", "red"]
+    ["uno:GND.1", "button:1.l", "black"]
   ]
 }
 

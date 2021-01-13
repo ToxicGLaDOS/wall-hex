@@ -9,7 +9,8 @@ Hex::Hex(uint8_t hexIndices[]) {
 void Hex::changeMode(){
   // Increment mode, but keep it in bounds for the mode functions array
   mode++;
-  mode %= sizeof(modes);
+  mode %= sizeof(modes)/sizeof(modes[0]);
+  previousMode = mode; // This keeps endSelectMode from overwriting our changes
 }
 
 void Hex::beginSelectMode(){
@@ -24,6 +25,10 @@ void Hex::endSelectMode(){
     selectMode = false;
     mode = previousMode;
   }
+}
+
+void Hex::beginPatternSelectMode(){
+  mode = previousMode;
 }
 
 void Hex::updateLights(){
@@ -57,12 +62,22 @@ void Hex::blinkRed(){
     }
     timer = 0;
   }
-
 }
 
 void Hex::staticRed(){
   for (int i = 0; i < sizeof(ledData)/sizeof(ledData[0]); i++){
     ledData[i] = CRGB::Red;
   }
+}
 
+void Hex::staticGreen(){
+  for (int i = 0; i < sizeof(ledData)/sizeof(ledData[0]); i++){
+    ledData[i] = CRGB::Green;
+  }
+}
+
+void Hex::staticBlue(){
+  for (int i = 0; i < sizeof(ledData)/sizeof(ledData[0]); i++){
+    ledData[i] = CRGB::Blue;
+  }
 }

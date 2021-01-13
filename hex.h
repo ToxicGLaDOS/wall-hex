@@ -13,7 +13,7 @@ class Hex {
     bool selectMode = false;
     uint8_t previousMode = 0; // Used by endSelectMode to go back to the previous mode
     // List of mode functions
-    hex_func modes[2] = {&blinkRed, &staticRed};
+    hex_func modes[4] = {&blinkRed, &staticRed, &staticGreen, &staticBlue};
 
   public:
     Hex(uint8_t hexIndices[]);
@@ -23,11 +23,17 @@ class Hex {
 
     void endSelectMode();
 
+    void beginPatternSelectMode();
+
     void updateLights();
 
     void blinkRed();
 
     void staticRed();
+
+    void staticGreen();
+    
+    void staticBlue();
 
     uint8_t getNumLeds(){return sizeof(indices);};
 

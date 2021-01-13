@@ -3,28 +3,29 @@
 Button::Button(){}
 
 void Button::updateButton(){
-    bool pressed = digitalRead(BUTTON_PIN);
-    switch (event) {
-    case NONE:
+    event = Event::NONE;
+    bool pressed = isPressed();
+    switch (state) {
+    case State::NONE:
         if(pressed){
             press();
         }
         break;
-    case PRESS:
+    case State::PRESS:
         if(pressed){
             hold();
         } else{
             release();
         }
         break;
-    case HOLD:
+    case State::HOLD:
         if(pressed){
             hold();
         } else{
             release();
         }
         break;
-    case RELEASE:
+    case State::RELEASE:
         if(pressed){
             press();
         } else{
@@ -38,25 +39,34 @@ void Button::updateButton(){
 
 
 void Button::press(){
-    event = PRESS;
-    holdTimer = 0;
+    state = State::PRESS;
     previousTime = millis();
+    lastPressTime = millis();
 }
 
 void Button::hold(){
-    event = HOLD;
-    unsigned long delta = millis() - previousTime;
-    holdTimer += delta;
-    previousTime = millis();
+    if (!longPressedAlreadyFired && millis() - lastPressTime >= longPressLength){
+        event = Event::LONG_PRESS;
+        longPressedAlreadyFired = true;
+    }
+    else{
+        state = State::HOLD;
+    }
 }
 
 void Button::release(){
-    event = RELEASE;
+    if (millis() - lastPressTime < longPressLength){
+        event = Event::PRESS;
+    }
+    state = State::RELEASE;
+    longPressedAlreadyFired = false;
 }
 
 void Button::none(){
-    event = NONE;
-    holdTimer = 0;
+    state = State::NONE;
 }
 
+bool Button::isPressed(){
+    return !digitalRead(BUTTON_PIN);
+}
 

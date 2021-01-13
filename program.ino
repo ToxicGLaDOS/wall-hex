@@ -27,12 +27,19 @@ Button button;
 
 uint8_t selectedHex = 0;
 
-enum OperationMode{NORMAL, SELECTING};
+enum OperationMode{NORMAL, SELECTING_HEX, SELECTING_PATTERN};
 
 OperationMode operationMode = NORMAL;
 
+unsigned long timeoutTimer = 0;
+unsigned long previousTimeoutTime = 0;
+const unsigned long timeoutDuration = 3000;
+
+
 void setup() {
     Serial.begin(9600);
+    Serial.println("Begin");
+    pinMode(4, INPUT_PULLUP);
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
 }
 
@@ -57,24 +64,80 @@ void loop() {
 void handleButton() {
   button.updateButton();
   Event event = button.getEvent();
-  if (event == PRESS){
-    // Do nothing. Wait for the release
+  unsigned long timeoutDelta = millis() - previousTimeoutTime;
+
+  if (operationMode == NORMAL){
+    // Any press sends you to SELECTING_HEX
+    if(event == Event::PRESS || event == Event::LONG_PRESS){
+      operationMode = SELECTING_HEX;
+      hexes[selectedHex].beginSelectMode();
+    }
   }
-  else if (event == HOLD){
-    operationMode = SELECTING;
-    unsigned long holdTime = button.getHoldDuration();
-    if (holdTime > 500){
-      operationMode = SELECTING;
-      button.subtractHoldTime(500);
+  else if(operationMode == SELECTING_HEX){
+    if (event == Event::PRESS){
       hexes[selectedHex].endSelectMode();
       selectedHex++;
       selectedHex %= NUM_HEXES;
       hexes[selectedHex].beginSelectMode();
+      timeoutTimer = 0;
     }
+    else if(event == Event::LONG_PRESS){
+      Serial.println("Transition to select pattern");
+      operationMode = SELECTING_PATTERN;
+      hexes[selectedHex].beginPatternSelectMode();
+      timeoutTimer = 0;
+    }
+    else{
+      timeoutTimer += timeoutDelta;
+    }
+    
+    handleTimeout();
   }
-  else if (event == RELEASE){
+  else if(operationMode == SELECTING_PATTERN){
+    if (event == Event::PRESS){
+      Serial.println("New pattern");
+      hexes[selectedHex].changeMode();
+      timeoutTimer = 0;
+    }
+    else if(event == Event::LONG_PRESS){
+      Serial.println("Transition to select hex");
+      operationMode = SELECTING_HEX;
+      hexes[selectedHex].beginSelectMode();
+      timeoutTimer = 0;
+    }
+    else{
+      timeoutTimer += timeoutDelta;
+    }
+
+    handleTimeout();
+  }
+  previousTimeoutTime = millis();
+}
+
+void printEvent(){
+  Event event = button.getEvent();
+  switch(event){
+    case Event::NONE:
+      Serial.println(0);
+      break;
+    case Event::PRESS:
+      Serial.println(1);
+      break;
+    case Event::HOLD:
+      Serial.println(2);
+      break;
+    case Event::RELEASE:
+      Serial.println(3);
+      break;
+  }
+}
+
+void handleTimeout(){
+  if (timeoutTimer > timeoutDuration){
+    Serial.println("Timeout");
     operationMode = NORMAL;
     hexes[selectedHex].endSelectMode();
+    timeoutTimer = 0;
   }
 }
 
